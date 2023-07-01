@@ -2,7 +2,7 @@
   <img class="CoverImagee" src="GIT HUB COVER.png" alt="Cover">
 </div>
 
-<h3>✺ Journaling Project - Mental Health Helper ✺</h3>
+<h3>✺ Journaling Project ✺</h3>
 
 The Journaling Project is a website designed for personal journaling and acts as a mental health helper. It provides a platform for users to write and organize their daily entries while promoting emotional well-being and self-reflection.
 
