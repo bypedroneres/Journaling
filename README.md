@@ -31,7 +31,7 @@ The Journaling Project features a user-friendly design that fosters a calm and p
 
 <h4>✹ Link to the Project ✹</h4>
 
-<h5>Insert the link to your Journaling Project here</h5>
+<h5>https://bypedroneres.github.io/Journaling/</h5>
 
 <h4>✹ Thanks for your interest! ✹</h4>
 
