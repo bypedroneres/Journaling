@@ -1,11 +1,12 @@
 body {
     background-color: #1a1a1a;
     color: #F4F4F4;
-    font-family: Arial, sans-serif;
+    font-family: 'Roboto Mono', monospace, Arial, sans-serif;
     margin: 0 auto;
     padding: 30px;
     max-width: 600px;
 }
+
 
 .container {
     max-width: 600px;
@@ -15,6 +16,7 @@ body {
 
 h1 {
     text-align: center;
+    font-weight: 500;
 }
 
 .journal {
@@ -27,10 +29,13 @@ textarea {
     height: 200px;
     padding: 20px;
     resize: none;
-    background-color: #F4F4F4;
-    color: #1a1a1a;
+    border: 2px solid #f4f4f4;
+    background-color: #1a1a1a;
+    color: #f4f4f4;
     border-radius: 15px;
     font-size: 10px;
+    font-family: 'Roboto Mono', monospace, Arial, sans-serif;
+    font-weight: 100;
 }
 
 button {
@@ -51,11 +56,18 @@ button:hover {
 
 .entries h2 {
     margin-top: 20px;
+    font-family: 'Roboto Mono', monospace, Arial, sans-serif;
+    font-weight: 100;
+    
 }
 
 .entries-container {
     display: flex;
     flex-wrap: wrap;
+    font-family: 'Roboto Mono', monospace, Arial, sans-serif;
+    font-weight: 100;
+    font-size: 10px;
+    
 }
 
 /* previous journals */
@@ -73,7 +85,10 @@ button:hover {
     overflow: hidden;
     white-space: normal;
     border-radius: 15px;
-    font-size: 13px;
+    font-size: 10px;
+    border: 2px solid #f4f4f4;
+    background-color: #1a1a1a;
+    color: #f4f4f4;
 }
 
 .edit-button,
@@ -81,17 +96,18 @@ button:hover {
     position: absolute;
     top: -10px;
     right: 10px;
-    background-color: #f4f4f4;
-    color: #1a1a1a;
     border: none;
     padding: 5px 10px;
     cursor: pointer;
-    border: 2px solid #1a1a1a;
+    background-color: #1a1a1a;
+    color: #f4f4f4;
+    border: 2px solid #f4f4f4;
 }
 
 .edit-button:hover,
 .delete-button:hover {
-    background-color: #1a1a1a;
-    color: #f4f4f4;
+    background-color: #f4f4f4;
+    color: #1a1a1a;
 }
+
 
