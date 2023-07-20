@@ -1,12 +1,8 @@
+let entryId = 0;
+
 // Load existing entries from local storage
 window.addEventListener('DOMContentLoaded', function() {
-    var entries = localStorage.getItem('journalEntries');
-    if (entries) {
-        var parsedEntries = JSON.parse(entries);
-        parsedEntries.forEach(function(entry) {
-            createEntryElement(entry.text, entry.date);
-        });
-    }
+    loadEntriesFromLocalStorage();
 });
 
 document.getElementById('save-button').addEventListener('click', function() {
@@ -37,6 +33,7 @@ function createEntryElement(text, date) {
     var entryElement = document.createElement('div');
     entryElement.className = 'entry';
     entryElement.title = date;
+    
 
     var entryTextElement = document.createElement('p');
     entryTextElement.innerText = text;
@@ -55,6 +52,9 @@ function createEntryElement(text, date) {
             var index = Array.from(entryElement.parentNode.children).indexOf(entryElement);
             existingEntries[index].text = newText;
             localStorage.setItem('journalEntries', JSON.stringify(existingEntries));
+
+            // Save entries to local storage
+            saveEntriesToLocalStorage();
         }
     });
 
@@ -62,17 +62,20 @@ function createEntryElement(text, date) {
     deleteButton.innerText = 'Delete';
     deleteButton.className = 'delete-button';
     deleteButton.addEventListener('click', function() {
-    if (confirm('Are you sure you want to delete this entry?')) {
-        entryElement.remove();
+        if (confirm('Are you sure you want to delete this entry?')) {
+            entryElement.remove();
 
-        // Remove entry from local storage
-        var entries = localStorage.getItem('journalEntries');
-        var existingEntries = entries ? JSON.parse(entries) : [];
-        var index = Array.from(entryElement.parentNode.children).indexOf(entryElement);
-        existingEntries.splice(index, 1);
-        localStorage.setItem('journalEntries', JSON.stringify(existingEntries));
-    }
-});
+            // Remove entry from local storage and update the list
+            var entries = localStorage.getItem('journalEntries');
+            var existingEntries = entries ? JSON.parse(entries) : [];
+            var index = Array.from(entryElement.parentNode.children).indexOf(entryElement);
+            existingEntries.splice(index, 1);
+            localStorage.setItem('journalEntries', JSON.stringify(existingEntries));
+
+            // Save entries to local storage
+            saveEntriesToLocalStorage();
+        }
+    });
 
     entryElement.appendChild(entryTextElement);
     entryElement.appendChild(editButton);
@@ -80,3 +83,30 @@ function createEntryElement(text, date) {
 
     document.getElementById('entries-container').prepend(entryElement);
 }
+
+function saveEntriesToLocalStorage() {
+    const entries = document.getElementsByClassName('entry');
+    const entriesArray = Array.from(entries).map(entry => ({
+        text: entry.querySelector('p').innerText,
+        date: entry.title
+    }));
+    localStorage.setItem('journalEntries', JSON.stringify(entriesArray));
+}
+
+function loadEntriesFromLocalStorage() {
+    const savedEntries = localStorage.getItem('journalEntries');
+    if (savedEntries) {
+        const entriesArray = JSON.parse(savedEntries);
+        entriesArray.forEach(entry => {
+            createEntryElement(entry.text, entry.date);
+        });
+    }
+}
+
+// Call saveEntriesToLocalStorage when needed (after adding/deleting entries)
+document.getElementById('entries-container').addEventListener('click', function(event) {
+    if (event.target.classList.contains('delete-button') || event.target.classList.contains('edit-button')) {
+        saveEntriesToLocalStorage();
+    }
+});
+
